@@ -1,0 +1,89 @@
+body {
+    /*background-image: url('путь-к-вашей-фотографии.jpg');*/
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+.app-header {
+    background-color: #4b4949; /* Цвет фона шапки */
+    color: #fff; /* Цвет текста */
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* Ваш файл стилей (например, styles.css) */
+
+/* Стиль для кнопки с классом .custom-button */
+.custom-button {
+    background-color: #333333; /* Здесь можно указать желаемый цвет фона */
+    /* Другие стили, если необходимо */
+}
+
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.main-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.main-menu li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.main-menu a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.main-menu a:hover {
+    text-decoration: underline;
+}
+
+.fs-4 {
+    font-size: 2rem; /* Измените размер шрифта по вашему усмотрению */
+    color: #0e0e0e; /* Измените цвет текста по вашему усмотрению */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Тень текста */
+}
+nav {
+    display: flex;
+    justify-content: space-between; /* Размещаем элементы по краям контейнера */
+    align-items: flex-start; /* Выравниваем элементы по вертикали по центру */
+    font-size: 1.2rem; /* Измените размер шрифта по вашему усмотрению */
+    color: #111010; /* Измените цвет текста по вашему усмотрению */
+    text-shadow: 2px 2px 4px rgba(5, 5, 5, 0.5); /* Тень текста */
+}
+
+/*a {*/
+/*    flex: 1; !* Распределяем доступное пространство равномерно между элементами *!*/
+/*}*/
+
+/* Применяем порядок */
+a:first-child {
+    order: 1; /* Первый элемент (Категории) идет слева */
+
+}
+
+a:last-child {
+    order: 2; /* Второй элемент (Корзина) идет справа */
+}
+
+
+
+.row {
+    /*display: flex;*/
+    /*flex-direction: column; !* Размещаем элементы вертикально *!*/
+    display: flex;
+    justify-content: space-between; /* Размещаем элементы по краям контейнера */
+    align-items: center;
+    margin-left: 290px;
+    margin-right: 590px ;
+    /*align-items: center; !* Выравниваем элементы по вертикали по центру *!*/
+
+}

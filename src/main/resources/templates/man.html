@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        body {
+            /*background-image: url('gerl.jpg');*/
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .app-header {
+            background-color: #3a3939; /* Цвет фона шапки */
+            color: #fff; /* Цвет текста */
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+        .logo img {
+            max-width: 50px; /* Максимальная ширина логотипа */
+        }
+
+        .main-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+
+        search-box {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-box input[type="text"] {
+            padding: 5px;
+            border: none;
+            border-radius: 3px;
+        }
+
+        .search-box button {
+            background-color: #007bff; /* Цвет кнопки */
+            color: #fff; /* Цвет текста на кнопке */
+            border: none;
+            border-radius: 3px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .search-box button:hover {
+            background-color: #0056b3; /* Цвет кнопки при наведении */
+        }
+        /* Стили для квадратов */
+        .card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Настройте размеры и отступы для каждого квадрата */
+            width: 100%;
+            max-width: 100%; /* Максимальная ширина каждого квадрата */
+            margin: 10px; /* Отступ между квадратами */
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-text {
+            font-size: 16px;
+            color: #333;
+        }
+
+
+    </style>
+</head>
+<body>
+<header class="app-header">
+    <div class="logo">
+        <a href="/clothing">
+            <img src="https://www.papiersdeparis.com/en/upload/burger_icon.png" width="45%">
+        </a>
+    </div>
+    <div class="search-box">
+        <form action="/search" method="get">
+            <input type="text" name="query" placeholder="Поиск">
+            <button type="submit"><img src="иконка_поиска" alt="Поиск"></button>
+        </form>
+    </div>
+    <nav class="main-menu">
+        <ul>
+            <li><a href="#">О нас</a></li>
+            <li><a href="#"><img src="корзина" ></a></li>
+        </ul>
+    </nav>
+
+</header>
+<h1>Мужская коллекция </h1>
+<main>
+    <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <!-- Содержимое квадрата 1 -->
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm">
+                        хухухсххххуй
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm">
+                        хуй
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <!-- Содержимое квадрата 4 -->хуй
+                    </div>
+                </div>
+
+                <!-- Повторите этот блок для следующей группы квадратов -->
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

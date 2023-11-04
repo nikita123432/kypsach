@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="katalog.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <style>
+    /*    body {*/
+    /*    !*background-image: url('путь-к-вашей-фотографии.jpg');*!*/
+    /*    margin: 0;*/
+    /*    padding: 0;*/
+    /*    font-family: Arial, sans-serif;*/
+
+    /*}*/
+    /*.app-header {*/
+    /*    display: flex;*/
+    /*    justify-content: space-between;*/
+    /*    align-items: center;*/
+    /*    background-color: #504c4c; !* Замените на желаемый цвет фона *!*/
+    /*    color: white; !* Цвет текста *!*/
+    /*    padding: 10px; !* Добавьте или измените отступы, если нужно *!*/
+    /*}*/
+    /* Общие стили для всей страницы */
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('gerl.jpg');
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+    }
+    .center-content {
+        display: flex;
+        flex-direction: column;
+        /*justify-content: center;*/
+        align-items: center;
+        min-height: 100vh; /* Занимать всю видимую высоту экрана */
+    }
+    /* Стили для шапки страницы */
+    .app-header {
+        background-color: #4b4949;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+    }
+    .image-container {
+        width: 200px; /* Задайте нужную ширину */
+        height: 200px; /* Задайте нужную высоту */
+        /*overflow: hidden; !* Обрезать изображение, если оно превышает размер контейнера *!*/
+    }
+    .background-image {
+        background-image: url("https://profotovideo.ru/images/2017/04/18-bandw/blackandwhite02.jpg");
+        background-size: cover; /* Масштабирование фонового изображения для заполнения элемента */
+        background-position: center; /* Позиция изображения по центру элемента */
+        background-repeat: no-repeat; /* Запрет повторения фонового изображения */
+        width: 100%; /* Ширина элемента */
+        height: 500px; /* Высота элемента */
+        color: #fff; /* Цвет текста на фоне */
+        text-align: center; /* Выравнивание текста по центру */
+    }
+
+    /* Стили для изображения */
+    .image-container img {
+        width: 100%; /* Заполнить всю ширину контейнера */
+        height: 100%; /* Заполнить всю высоту контейнера */
+        object-fit: cover; /* Растягивать или сжимать изображение, чтобы оно полностью заполнило контейнер */
+    }
+
+    .app-header a {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .logo img {
+        width: 30px; /* Измените размер логотипа по вашим потребностям */
+    }
+
+    .main-menu ul {
+        list-style-type: none;
+    }
+
+    .main-menu li {
+        display: inline;
+        margin: 10px;
+    }
+
+    /* Стили для заголовка "Каталог одежды" */
+    h1 {
+        font-size: 24px;
+        text-align: center;
+        margin: 20px;
+    }
+
+    /* Стили для боковой панели навигации */
+    .flex-shrink-0 {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+    }
+
+    .list-unstyled {
+        padding: 0;
+        list-style: none;
+    }
+
+    .btn-toggle {
+        width: 100%;
+        text-align: left;
+        background: none;
+        border: none;
+        padding: 10px 0;
+        cursor: pointer;
+    }
+
+    .btn-toggle:focus {
+        outline: none;
+    }
+
+    .btn-toggle-nav {
+        padding: 0;
+    }
+
+    .link-body-emphasis {
+        text-decoration: none;
+        color: #333;
+        display: block;
+        padding: 5px 0;
+    }
+
+    .link-body-emphasis:hover {
+        background-color: #eee;
+        border-radius: 5px;
+    }
+
+    </style>
+    <title>Title</title>
+</head>
+<body>
+
+    <header class="app-header">
+        <div class="logo">
+            <a href="/clothing">
+                <img src="https://www.papiersdeparis.com/en/upload/burger_icon.png" width="2%">
+            </a>
+        </div>
+
+
+        <nav class="main-menu">
+            <ul>
+
+                <li><a href="#"><img src="корзина" ></a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="center-content">
+<!--        <div class="background-image">-->
+<!--&lt;!&ndash;            <div class="image-container">&ndash;&gt;-->
+<!--&lt;!&ndash;                <img src="https://profotovideo.ru/images/2017/04/18-bandw/blackandwhite02.jpg">&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--        </div>-->
+        <h1>Каталог одежды </h1>
+        <div class="flex-shrink-0 p-4" style="width: 280px;">
+            <a href="/" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
+                <svg class="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+                <span class="fs-5 fw-semibold">Home</span>
+            </a>
+            <ul class="list-unstyled p-0">
+                <li class="mb-1">
+                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+                        Одежда
+                    </button>
+                    <div class="collapse show" id="home-collapse" style="">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Верхняя одежда</a></li>
+                            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Демперы, свитеры</a></li>
+                            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Брюки</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="true">
+                        Обувь
+                    </button>
+                    <div class="collapse show" id="dashboard-collapse" style="">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Ботинки</a></li>
+                            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Кеды</a></li>
+                            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Кроссовки</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="true">
+                        Аксессуары
+                    </button>
+                    <div class="collapse show" id="orders-collapse" style="">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Сумки</a></li>
+                            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Шарфы</a></li>
+                            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Головные уборы</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="border-top my-3"></li>
+            </ul>
+        </div>
+</div>
+
+
+</body>
+</html>

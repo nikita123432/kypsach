@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>BUYSELL</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"  href="home.css">
+    <style>
+        body {
+        /*background-image: url('gerl.jpg');*/
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+    .app-header {
+        background-color: #3a3939; /* Цвет фона шапки */
+        color: #fff; /* Цвет текста */
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Ваш файл стилей (например, styles.css) */
+
+    /* Стиль для кнопки с классом .custom-button */
+    /*.custom-button {*/
+    /*    background-color: #4b4949; !* Здесь можно указать желаемый цвет фона *!*/
+    /*    !* Другие стили, если необходимо *!*/
+    /*}*/
+
+
+    .logo {
+        font-size: 25px;
+        font-weight: bold;
+    }
+        .logo img {
+            max-width: 50px; /* Максимальная ширина логотипа */
+        }
+
+    .main-menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .main-menu li {
+        display: inline;
+        margin-right: 20px;
+    }
+
+    .main-menu a {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .main-menu a:hover {
+        text-decoration: underline;
+    }
+
+    /*.fs-4 {*/
+    /*    font-size: 2rem; !* Измените размер шрифта по вашему усмотрению *!*/
+    /*    color: #0e0e0e; !* Измените цвет текста по вашему усмотрению *!*/
+    /*    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); !* Тень текста *!*/
+    /*}*/
+    nav {
+        display: flex;
+        justify-content: space-between; /* Размещаем элементы по краям контейнера */
+        align-items: flex-start; /* Выравниваем элементы по вертикали по центру */
+        font-size: 1.2rem; /* Измените размер шрифта по вашему усмотрению */
+        color: #111010; /* Измените цвет текста по вашему усмотрению */
+        text-shadow: 2px 2px 4px rgba(5, 5, 5, 0.5); /* Тень текста */
+    }
+
+    /*a {*/
+    /*    flex: 1; !* Распределяем доступное пространство равномерно между элементами *!*/
+    /*}*/
+
+    /* Применяем порядок */
+    a:first-child {
+        order: 1; /* Первый элемент (Категории) идет слева */
+
+    }
+
+    a:last-child {
+        order: 2; /* Второй элемент (Корзина) идет справа */
+    }
+    .row {
+        /*display: flex;*/
+        /*flex-direction: column; !* Размещаем элементы вертикально *!*/
+        display: flex;
+        justify-content: space-between; /* Размещаем элементы по краям контейнера */
+        align-items: center;
+        margin-left: 290px;
+        margin-right: 590px ;
+        /*align-items: center; !* Выравниваем элементы по вертикали по центру *!*/
+
+    }
+        search-box {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-box input[type="text"] {
+            padding: 5px;
+            border: none;
+            border-radius: 3px;
+        }
+
+        .search-box button {
+            background-color: #007bff; /* Цвет кнопки */
+            color: #fff; /* Цвет текста на кнопке */
+            border: none;
+            border-radius: 3px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .search-box button:hover {
+            background-color: #0056b3; /* Цвет кнопки при наведении */
+        }
+    </style>
+</head>
+<body>
+
+<header class="app-header">
+    <div class="logo">
+        <a href="/clothing">
+            <img src="https://www.papiersdeparis.com/en/upload/burger_icon.png" width="45%">
+        </a>
+    </div>
+    <div class="search-box">
+        <form action="/search" method="get">
+            <input type="text" name="query" placeholder="Поиск">
+            <button type="submit"><img src="иконка_поиска" alt="Поиск"></button>
+        </form>
+    </div>
+    <nav class="main-menu">
+        <ul>
+            <li><a href="#">О нас</a></li>
+            <li><a href="#"><img src="корзина" ></a></li>
+        </ul>
+    </nav>
+
+</header>
+    <main>
+
+
+
+        <div class="album py-5 bg-body-tertiary">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <a href="/wiman">
+                                <svg class="bd-placeholder-img card-img-top" width="200%" height="825" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                                    <title>Placeholder</title>
+                                    <image xlink:href="https://cdn.fw-daily.com/2014/12/10850781_1751954761696329_1383874272_n-363x465.jpg" width="100%" height="825" />
+                                    <text x="44%" y="78%" fill="#eceeef" dy=".3em">ЖЕНЩИНА</text>
+                                </svg>
+                            </a>
+<!--                            <div class="card-body">-->
+<!--                                <div class="d-flex justify-content-between align-items-center">-->
+<!--                                    <div class="btn-group">-->
+<!--                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>-->
+<!--                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+<!--                                    </div>-->
+<!--                                    <small class="text-body-secondary">9 mins</small>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <a href="/man">
+                                <svg class="bd-placeholder-img card-img-top" width="200%" height="825" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                                    <title>Placeholder</title>
+                                    <image xlink:href="https://lampaled.ru/800/600/https/1.bp.blogspot.com/_azb7-z33VWA/S_E8kx--Q_I/AAAAAAABa8k/PbHT-ycuvcg/s1600/35.jpg" width="100%" height="825" />
+                                    <text x="44%" y="78%" fill="#eceeef" dy=".3em">МУЖЧИНА</text>
+                                </svg>
+                            </a>
+    <!--                            <div class="card-body">-->
+    <!--                                <div class="d-flex justify-content-between align-items-center">-->
+    <!--                                    <div class="btn-group">-->
+    <!--                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>-->
+    <!--                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+    <!--                                    </div>-->
+    <!--                                    <small class="text-body-secondary">9 mins</small>-->
+    <!--                                </div>-->
+    <!--                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!--    <footer class="text-body-secondary py-5">-->
+    <!--        <div class="container">-->
+    <!--            <p class="float-end mb-1">-->
+    <!--                <a href="#">Back to top</a>-->
+    <!--            </p>-->
+    <!--            <p class="mb-1">Album example is © Bootstrap, but please download and customize it for yourself!</p>-->
+    <!--            <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="/docs/5.3/getting-started/introduction/">getting started guide</a>.</p>-->
+    <!--        </div>-->
+    <!--    </footer>-->
+    <!--<form action="/" method="get">-->
+    <!--    Поиск по названию: <input type="text" name="title"><br>-->
+    <!--    <input type="submit" value="Поиск"/>-->
+    <!--</form>-->
+
+<hr>
+</body>
+</html>
