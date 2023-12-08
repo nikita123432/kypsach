@@ -3,7 +3,7 @@
 <head>
     <title>BUYSELL</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet"  href="../static/styles/home.css">
+    <link rel="stylesheet" type="text/css"  href="../static/css/home.css" th:href="@{/css/home.css}">
     <style>
         body {
         /*background-image: url('gerl.jpg');*/
@@ -128,6 +128,13 @@
             <img src="https://www.papiersdeparis.com/en/upload/burger_icon.png" width="45%">
         </a>
     </div>
+
+    <nav class="main-menu">
+            <div>
+            <!-- Добавляем условное отображение для кнопки "Добавить товар" -->
+                <a href="/addProduct" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">Add Product</a>
+            </div>
+    </nav>
     <div class="search-box">
         <form action="/search" method="get">
             <input type="text" name="query" placeholder="Поиск">
@@ -137,8 +144,8 @@
     <nav class="main-menu">
         <ul>
 
-            <li><a href="/addProduct">О нас</a></li>
-            <li><a href="#"><img src="корзина" ></a></li>
+            <li><a href="/Home" ></a>О нас </li>
+            <li><a href="#"><img src="D:\kursach\buysell\src\main\resources\static\photos\karzina.png" ></a></li>
         </ul>
     </nav>
 
@@ -152,7 +159,7 @@
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     <div class="col">
                         <div class="card shadow-sm">
-                            <a href="/wiman">
+                            <a th:href="@{'/sex?sex=Женский'}">
                                 <svg class="bd-placeholder-img card-img-top" width="200%" height="825" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
                                     <title>Placeholder</title>
                                     <image xlink:href="https://cdn.fw-daily.com/2014/12/10850781_1751954761696329_1383874272_n-363x465.jpg" width="100%" height="825" />
@@ -172,7 +179,7 @@
                     </div>
                     <div class="col">
                         <div class="card shadow-sm">
-                            <a href="/man">
+                            <a th:href="@{'/sex?sex=Мужской'}">
                                 <svg class="bd-placeholder-img card-img-top" width="200%" height="825" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
                                     <title>Placeholder</title>
                                     <image xlink:href="https://lampaled.ru/800/600/https/1.bp.blogspot.com/_azb7-z33VWA/S_E8kx--Q_I/AAAAAAABa8k/PbHT-ycuvcg/s1600/35.jpg" width="100%" height="825" />

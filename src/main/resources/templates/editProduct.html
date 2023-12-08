@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Add Product</title>
+    <title>Edit Product</title>
 </head>
 <body>
 
 <h2>Add Product</h2>
-<form th:action="@{/product/add}" th:method="post" th:object="${product}" enctype="multipart/form-data">
+<form th:action="@{/product/edit}" th:method="post" th:object="${product}" enctype="multipart/form-data">
     <input type="text" th:field="*{title}" required placeholder="Введите название">
     <textarea type="text" th:field="*{description}" required placeholder="Введите описание"></textarea>
     <input type="number" th:field="*{price}" required placeholder="Введите цену">
     <select name="sex">
-        <option value="Мужской">Мужской</option>
-        <option value="Женский">Женский</option>
+        <option value="Мужской" th:selected="${product.sex == 'Мужской'}">Мужской</option>
+        <option value="Женский" th:selected="${product.sex == 'Женский'}">Женский</option>
     </select>
-    <input type="file" name="photos" accept="image/*" multiple required>
     <section>
         <option></option>
     </section>
-    <button type="submit" value="Добавить товар"></button>
+    <input type="hidden" name="productId" th:value="${product.id}">
+    <button type="submit">Отредактировать</button>
 </form>
 </body>
 </html>

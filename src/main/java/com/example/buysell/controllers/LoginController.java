@@ -1,5 +1,4 @@
 package com.example.buysell.controllers;
-
 import com.example.buysell.models.Role;
 import com.example.buysell.models.User;
 import com.example.buysell.repositories.UserRepository;
@@ -15,83 +14,50 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @AllArgsConstructor
 public class LoginController {
-    private final UserService userService;
+    UserService userService;
 
-//    @GetMapping("/login")
-//    public String showLoginForm() {
-//        return "login";
-//    }
-//    @GetMapping("/regist")
-//    public String reg(Model model){
-//        model.addAttribute("user", new User());
-//        return "register";
-//    }
-//
-////    @GetMapping("/user/home")
-////    @PreAuthorize("hasRole('USER')")
-////    public String userHome() {
-////        return "user/home";
-////    }
-////
-////    @GetMapping("/admin/home")
-////    @PreAuthorize("hasRole('ADMIN')")
-////    public String adminHome() {
-////        return "admin/home";
-////    }
-//
-//    @GetMapping("/user/home")
+    @GetMapping("/login")
+    public String showLoginForm() {
+
+        return "login";
+    }
+    //    @GetMapping("/user/home")
 //    @PreAuthorize("hasRole('USER')")
 //    public String userHome() {
 //        return "user/home";
 //    }
+//    @PostMapping("/login")
+//    public String showLoginForm(@ModelAttribute("user") User user) {
+//        if ("ROLE_USER".equals(user.getRole())){
+//            return "redirect:/admin";
+//        }else return "redirect:/";
 //
-//    @GetMapping("/admin/home")
-//    @PreAuthorize("hasRole('ADMIN')")
-//    public String adminHome() {
-//        return "admin/home";
 //    }
 //
-//
-//
-////    @PostMapping("/regist")
-////    public String reg(@ModelAttribute("user") User user , Model model) {
-////        user.setRole(Role.USER);
-////
-////        try{
-////            userService.save(user);
-////            return "redirect:/login";
-////        } catch (Exception e) {
-////            model.addAttribute("alreadyExists", "Пользователь с таким логином уже существует");
-////            return "register";
-////        }
-////    }
-@GetMapping("/login")
-public String login() {
-    return "login";
-}
-
-    @GetMapping("/register")
-    public String registration() {
+//    @GetMapping("/admin/home")
+//    public String adminHome(Model model) {
+//        return "admin/home";
+//    }
+    @GetMapping("/regist")
+    public String reg(Model model){
+        model.addAttribute("user", new User());
         return "register";
     }
 
-
-    @PostMapping("/register")
-    public String createUser(User user, Model model) {
-        if (!userService.createUser(user)){
-            model.addAttribute("errorMassage", "Пользователь с email: " + user.getEmail() + "Пользователь уже существует ");
+    @PostMapping("/regist")
+    public String reg(@ModelAttribute("user") User user , Model model) {
+        user.setRole(Role.ROLE_USER);
+        try{
+            userService.save(user);
+            return "redirect:/login";
+        } catch (Exception e) {
+            model.addAttribute("alreadyExists", "Пользователь с таким логином уже существует");
             return "register";
         }
-        return "redirect:/login";
-    }
-
-    @GetMapping("/hello")
-    public String securityUrl() {
-        return "hello";
     }
 }
+

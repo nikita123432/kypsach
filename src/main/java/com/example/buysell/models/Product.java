@@ -1,7 +1,10 @@
 package com.example.buysell.models;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 import org.springframework.data.jdbc.repository.query.Query;
+
+import java.util.List;
 
 @Entity
 @Table(name = "product")
@@ -16,5 +19,10 @@ public class Product {
     private String title;
     private String description;
     private int price;
-    private String photoUrl;
+    @ElementCollection
+    @Cascade(org.hibernate.annotations.CascadeType.REMOVE)
+    private List<String> photoUrl;
+    private String sex;
+    @Enumerated(EnumType.STRING)
+    private Category category;
 }

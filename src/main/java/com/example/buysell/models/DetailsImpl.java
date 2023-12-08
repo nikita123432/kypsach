@@ -1,14 +1,12 @@
 package com.example.buysell.models;
 
-import lombok.AllArgsConstructor;
+import  lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor
 public class DetailsImpl implements UserDetails {
@@ -17,14 +15,12 @@ public class DetailsImpl implements UserDetails {
     private String password;
     private Collection<? extends GrantedAuthority> roles;
     public static DetailsImpl build(User user){
-
-
-        String userRole = null;
+        List<GrantedAuthority> authorityList = List.of(new SimpleGrantedAuthority(user.getRole().toString()));
         return new DetailsImpl(
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
-                Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + userRole))
+                authorityList
         );
     }
     @Override

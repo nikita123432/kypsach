@@ -1,22 +1,22 @@
 package com.example.buysell.services;
-
-
+import com.example.buysell.models.DetailsImpl;
 import com.example.buysell.models.User;
 import com.example.buysell.repositories.UserRepository;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class DetailsServiceImpl implements UserDetailsService {
-    private final UserRepository userRepository;
+    UserRepository userRepository;
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-
-        return userRepository.findByEmail(email);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(
+                "Пользователь не найден"
+        ));
+        return DetailsImpl.build(user);
     }
 }

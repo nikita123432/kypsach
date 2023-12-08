@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <p th:text="${product.title}"></p>
+        <form th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:action="@{/product/delete}" method="post">
+            <input type="hidden" name="productId" th:value="${product.id}">
+            <button type="submit">Удалить</button>
+        </form>
+        <form th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:action="@{/product/edit}" method="get">
+            <input type="hidden" name="productId" th:value="${product.id}">
+            <button type="submit">Отредактировать</button>
+        </form>
+        <form th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}" th:action="@{/product/basket}" method="post">
+            <input type="hidden" name="productId" th:value="${product.id}">
+            <button type="submit">Добавить в корзину</button>
+        </form>
+    </div>
+</body>
+</html>
