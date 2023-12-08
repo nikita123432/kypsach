@@ -61,8 +61,16 @@ public ProductController(ProductService productService) {
     }
 
     @GetMapping("/sex")
-    public String sex(@RequestParam("sex") String sex, Model model){
+    public String sex(@RequestParam("sex") String sex,
+                      @RequestParam(name = "title", required = false, defaultValue = "default") String title,
+                    @RequestParam(name = "category", required = false, defaultValue = "default") String category, Model model){
         List<Product> products = productService.findBySex(sex);
+        if(!title.equals("default")){
+            products = productService.findBySexAndTitle(products,title);
+        }
+        if(!category.equals("default")){
+            products = productService.filterByCategory(products,category);
+        }
         model.addAttribute("products", products);
         return "sex";
     }

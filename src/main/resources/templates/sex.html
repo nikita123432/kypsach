@@ -4,6 +4,19 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<div class="search-box">
+    <form>
+        <input type="text" name="title" id="searchInput" placeholder="Поиск" onkeypress="handleKeyPress(event)">
+        <button type="button" onclick="applySearch()"><img src="иконка_поиска" alt="Поиск"></button>
+    </form>
+</div>
+<form>
+    <select id="categorySelect" name = "category" onchange="applyCategory()" required>
+        <option value="default">Все</option>
+        <option th:each="category : ${T(com.example.buysell.models.Category).values()}"
+                th:value="${category}" th:text="${category}"></option>
+    </select>
+</form>
 <body>
     <div th:each="product : ${products}">
         <a th:href="@{'/product?productId=' + ${product.id}}">
@@ -12,4 +25,50 @@
 
     </div>
 </body>
+<script>
+    function applySearch() {
+        var searchInput = document.getElementById('searchInput').value.trim(); // Получаем значение из поля ввода и удаляем лишние пробелы
+
+        // Получаем текущий URL
+        var url = new URL(window.location.href);
+
+        // Удаляем предыдущее значение параметра "title"
+        url.searchParams.delete('title');
+
+        // Если введен запрос поиска, добавляем новое значение параметра "title" в URL
+        if (searchInput) {
+            url.searchParams.append('title', encodeURIComponent(searchInput));
+        }
+
+        // Перенаправляем на обновленный URL
+        window.location.href = url.toString();
+    }
+
+    function applyCategory() {
+        var categorySelect = document.getElementById('categorySelect');
+        var selectedCategory = categorySelect.value;
+
+        // Получаем текущий URL
+        var url = new URL(window.location.href);
+
+        // Удаляем предыдущее значение параметра "category"
+        url.searchParams.delete('category');
+
+        // Если выбрана категория, добавляем новое значение параметра "category" в URL
+        if (selectedCategory) {
+            url.searchParams.append('category', encodeURIComponent(selectedCategory));
+        }
+
+        // Перенаправляем на обновленный URL
+        window.location.href = url.toString();
+    }
+
+    function handleKeyPress(event) {
+        if (event.key === 'Enter') {
+            applySearch();
+            event.preventDefault(); // Предотвращаем стандартное поведение (например, отправку формы)
+        }
+    }
+</script>
+
 </html>

@@ -15,10 +15,11 @@
         <option value="Женский">Женский</option>
     </select>
     <input type="file" name="photos" accept="image/*" multiple required>
-    <section>
-        <option></option>
-    </section>
-    <button type="submit" value="Добавить товар"></button>
+    <select th:field="*{category}" required>
+        <option th:each="category : ${T(com.example.buysell.models.Category).values()}"
+                th:value="${category}" th:text="${category}"></option>
+    </select>
+    <button type="submit">Добавить товар</button>
 </form>
 </body>
 </html>

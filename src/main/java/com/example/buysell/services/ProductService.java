@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -36,6 +37,32 @@ public class ProductService {
     public List<Product> findBySex(String sex){
         return productRepository.findBySex(sex);
     }
+
+    public List<Product> findBySexAndTitle(List<Product> sexProduct, String title) {
+        List<Product> filteredProducts = new ArrayList<>();
+        // Перебираем все продукты и фильтруем их по полу (sex) и названию (title)
+        for (Product product : sexProduct) {
+            if (product.getTitle().contains(title)) {
+                filteredProducts.add(product);
+            }
+        }
+
+        return filteredProducts;
+    }
+
+    public List<Product> filterByCategory(List<Product> sexProduct, String category) {
+        List<Product> filteredProducts = new ArrayList<>();
+        // Перебираем все продукты и фильтруем их по полу (sex) и названию (title)
+        for (Product product : sexProduct) {
+            if (product.getCategory().name().equals(category)) {
+                filteredProducts.add(product);
+            }
+        }
+
+        return filteredProducts;
+    }
+
+
     @Transactional
     public void deleteProduct(Long id) {
 

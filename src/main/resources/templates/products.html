@@ -135,17 +135,10 @@
                 <a href="/addProduct" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">Add Product</a>
             </div>
     </nav>
-    <div class="search-box">
-        <form action="/search" method="get">
-            <input type="text" name="query" placeholder="Поиск">
-            <button type="submit"><img src="иконка_поиска" alt="Поиск"></button>
-        </form>
-    </div>
+
     <nav class="main-menu">
         <ul>
-
-            <li><a href="/Home" ></a>О нас </li>
-            <li><a href="#"><img src="D:\kursach\buysell\src\main\resources\static\photos\karzina.png" ></a></li>
+            <li><a href="/basket"><img src="D:\kursach\buysell\src\main\resources\static\photos\karzina.png" ></a></li>
         </ul>
     </nav>
 
