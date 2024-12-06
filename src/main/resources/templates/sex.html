@@ -3,46 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css"  href="../static/css/register.css" th:href="@{/css/sex.css}">
 </head>
-<div class="search-box">
-    <form>
-        <input type="text" name="title" id="searchInput" placeholder="Поиск" onkeypress="handleKeyPress(event)">
-        <button type="button" onclick="applySearch()"><img src="иконка_поиска" alt="Поиск"></button>
-    </form>
-</div>
-<form>
-    <select id="categorySelect" name = "category" onchange="applyCategory()" required>
-        <option value="default">Все</option>
-        <option th:each="category : ${T(com.example.buysell.models.Category).values()}"
-                th:value="${category}" th:text="${category}"></option>
-    </select>
-</form>
 <body>
-    <div th:each="product : ${products}">
-        <a th:href="@{'/product?productId=' + ${product.id}}">
-            <p th:text="${product.title}"></p>
-        </a>
+<header>
+    <nav>
+        <a href="/products"><input type="button" value="Главная" style="font-size: 22px; "></a>
+        <div class="search-box">
+            <form >
+                <input type="text" name="title" id="searchInput" placeholder="Поиск" onkeypress="handleKeyPress(event)" style="font-size: 24px; display: flex;">
+                <button type="button" onclick="applySearch()" class="search-button"></button>
+            </form>
+        </div>
 
-    </div>
+        <div class="main-menu">
+            <a href="/logout" style=" margin-right: 20px; font-size: 22px" >Выйти</a>
+
+                <div th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">
+                    <a href="/basket"><img th:src="@{'/photos/карзина.png'}" width="30" height="30" style=""></a>
+                </div>
+
+        </div>
+    </nav>
+</header>
+
+
+
+<img src="https://designlogo.com.ua/wp-content/uploads/2017/01/clothing_brand_corporate_Identity_.jpg" alt="Картинка под шапкой" style="width: 68%; height: 510px; margin-top: 10px">
+
+
+    <form>
+        <select id="categorySelect" name = "category" onchange="applyCategory()" required>
+            <option value="default">Все</option>
+            <option th:each="category : ${T(com.example.buysell.models.Category).values()}"
+                    th:value="${category.name()}" th:text="${category.name()}"></option>
+        </select>
+    </form>
+
+
+        <div class="products-container" th:each="product : ${products}">
+            <a th:href="@{'/product?productId=' + ${product.id}}" class="product-card">
+                <img th:src="@{'/photos/' + ${product.photoUrl.get(0)}}" alt="Product Image"/>
+                <p class="title" th:text="${product.title}"></p>
+                <p class="price"><span th:text="${product.price}"></span>$</p> <!-- Добавлено отображение цены -->
+            </a>
+        </div>
+
+<!--    <footer>-->
+<!--        <p>&copy; 2023 MaretСompany. Все права защищены.</p>-->
+<!--        &lt;!&ndash; Здесь можете добавить дополнительную информацию, ссылки и т.д. &ndash;&gt;-->
+<!--    </footer>-->
+
+
 </body>
 <script>
     function applySearch() {
-        var searchInput = document.getElementById('searchInput').value.trim(); // Получаем значение из поля ввода и удаляем лишние пробелы
+        var searchInput = document.getElementById('searchInput').value.trim();
 
+        // Кодируем введенное значение только один раз
+        var encodedSearchInput = encodeURIComponent(searchInput);
+
+        var url = new URL(window.location.href);
+        url.searchParams.delete('title');
+
+        if (searchInput) {
+            url.searchParams.append('title', encodedSearchInput);
+        }
+
+        window.location.href = decodeURIComponent(url.toString());
+    }
+
+
+    document.addEventListener('DOMContentLoaded', function() {
         // Получаем текущий URL
         var url = new URL(window.location.href);
 
-        // Удаляем предыдущее значение параметра "title"
-        url.searchParams.delete('title');
+        // Получаем значение параметра "category" из URL
+        var categoryParam = url.searchParams.get('category');
 
-        // Если введен запрос поиска, добавляем новое значение параметра "title" в URL
-        if (searchInput) {
-            url.searchParams.append('title', encodeURIComponent(searchInput));
+        // Если значение параметра "category" существует, устанавливаем его в select
+        if (categoryParam !== null) {
+            var categorySelect = document.getElementById('categorySelect');
+
+            // Устанавливаем значение и обновляем select
+            categorySelect.value = categoryParam;
         }
+    });
 
-        // Перенаправляем на обновленный URL
-        window.location.href = url.toString();
-    }
+    document.addEventListener('DOMContentLoaded', function() {
+        // Получаем текущий URL
+        var url = new URL(window.location.href);
+
+        // Получаем значение параметра "category" из URL
+        var titleParam = url.searchParams.get('title');
+
+        // Если значение параметра "category" существует, устанавливаем его в select
+        if (titleParam !== null) {
+            var searchInput = document.getElementById('searchInput');
+
+            // Устанавливаем значение и обновляем select
+            searchInput.value = titleParam;
+        }
+    });
 
     function applyCategory() {
         var categorySelect = document.getElementById('categorySelect');
@@ -51,17 +113,19 @@
         // Получаем текущий URL
         var url = new URL(window.location.href);
 
-        // Удаляем предыдущее значение параметра "category"
-        url.searchParams.delete('category');
-
         // Если выбрана категория, добавляем новое значение параметра "category" в URL
-        if (selectedCategory) {
-            url.searchParams.append('category', encodeURIComponent(selectedCategory));
+        if (selectedCategory !== 'default') {
+            url.searchParams.set('category', selectedCategory);
+        } else {
+            // Если выбрана опция "Все", удаляем параметр "category" из URL
+            url.searchParams.delete('category');
         }
 
         // Перенаправляем на обновленный URL
         window.location.href = url.toString();
     }
+
+
 
     function handleKeyPress(event) {
         if (event.key === 'Enter') {

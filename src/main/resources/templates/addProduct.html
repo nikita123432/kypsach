@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" type="text/css"  href="../static/css/home.css" th:href="@{/css/add.css}">
 <head>
     <title>Add Product</title>
 </head>
@@ -7,8 +8,8 @@
 
 <h2>Add Product</h2>
 <form th:action="@{/product/add}" th:method="post" th:object="${product}" enctype="multipart/form-data">
-    <input type="text" th:field="*{title}" required placeholder="Введите название">
-    <textarea type="text" th:field="*{description}" required placeholder="Введите описание"></textarea>
+    <input type="text" th:field="*{title}" required placeholder="Введите название" maxlength="25">
+    <textarea type="text" th:field="*{description}" required placeholder="Введите описание" maxlength="270"></textarea>
     <input type="number" th:field="*{price}" required placeholder="Введите цену">
     <select name="sex">
         <option value="Мужской">Мужской</option>
@@ -16,8 +17,8 @@
     </select>
     <input type="file" name="photos" accept="image/*" multiple required>
     <select th:field="*{category}" required>
-        <option th:each="category : ${T(com.example.buysell.models.Category).values()}"
-                th:value="${category}" th:text="${category}"></option>
+        <option th:each="categories : ${T(com.example.buysell.models.Category).values()}"
+                th:value="${categories}" th:text="${categories}"></option>
     </select>
     <button type="submit">Добавить товар</button>
 </form>

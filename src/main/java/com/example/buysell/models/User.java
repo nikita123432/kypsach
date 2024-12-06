@@ -3,6 +3,8 @@ package com.example.buysell.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "user")
 @AllArgsConstructor
@@ -22,6 +24,8 @@ public class User {
     @Enumerated(EnumType.STRING) // Эта аннотация указывает, что поле role должно храниться как строка
     @Column(name = "role")
     private Role role;
+    @ManyToMany
+    public List<Product> basket;
     public String getRole() {
         return role.name(); // Вернуть строковое представление enum
     }

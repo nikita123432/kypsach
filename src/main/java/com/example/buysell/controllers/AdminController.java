@@ -4,6 +4,7 @@ import com.example.buysell.models.Product;
 import com.example.buysell.models.User;
 import com.example.buysell.repositories.ProductRepository;
 import com.example.buysell.services.ProductService;
+import com.example.buysell.services.UserService;
 import jdk.jfr.MetadataDefinition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -25,6 +26,8 @@ import java.util.List;
 public class AdminController {
     @Autowired
     ProductService productService;
+    @Autowired
+    UserService userService;
     @GetMapping("/admin/home")
     public String adminHome() {
         // Возвращает страницу для администратора
@@ -63,6 +66,7 @@ public class AdminController {
                               RedirectAttributes redirectAttributes){
         product.setId(id);
         product.setSex(sex);
+        product.setPhotoUrl(productService.getProductById(id).getPhotoUrl());
         productService.saveProduct(product);
         redirectAttributes.addAttribute("productId", id);
         return "redirect:/product/edit";
@@ -86,5 +90,16 @@ public class AdminController {
         product.setPhotoUrl(photoUrls);
         productService.saveProduct(product);
         return "addProduct";
+    }
+    @GetMapping("/delete/user")
+    public String deleteUser(Model model){
+        model.addAttribute("users", userService.findAll());
+        return "deleteUser";
+    }
+    @PostMapping("/delete/user")
+    public String deleteUser(@RequestParam("username") String username, RedirectAttributes redirectAttributes){
+        userService.deleteUser(userService.findByUsername(username));
+        redirectAttributes.addAttribute("users",userService.findAll());
+        return "redirect:/delete/user";
     }
 }

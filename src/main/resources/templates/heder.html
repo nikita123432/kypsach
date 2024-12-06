@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<meta charset="UTF-8">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+
 </head>
 <body>
-$END$
+<header>
+    <nav>
+        <a href="/products"><input type="button" value="Главная" style="font-size: 22px; "></a>
+        <div class="search-box">
+            <form >
+                <input type="text" name="title" id="searchInput" placeholder="Поиск" onkeypress="handleKeyPress(event)" style="font-size: 24px; display: flex;">
+                <button type="button" onclick="applySearch()" class="search-button"></button>
+            </form>
+        </div>
+
+        <div class="main-menu">
+            <a href="/logout" style=" margin-right: 20px; font-size: 22px" >Выйти</a>
+
+            <div th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">
+                <a href="/basket"><img th:src="@{'/photos/карзина.png'}" width="30" height="30" style=""></a>
+            </div>
+
+        </div>
+    </nav>
+</header>
 </body>
 </html>

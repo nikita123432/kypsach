@@ -1,14 +1,19 @@
 package com.example.buysell.controllers;
 import com.example.buysell.models.Product;
+import com.example.buysell.models.User;
 import com.example.buysell.repositories.ProductRepository;
 import com.example.buysell.services.ProductService;
+import com.example.buysell.services.UserService;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,21 +23,8 @@ import java.util.List;
 
 public class ProductController {
     private final ProductService productService;
-//    @Autowired
-//    private ProductRepository productRepository;
-//
-//
-//    @GetMapping("/addProduct")
-//    public String showAddProductForm(Model model) {
-//        model.addAttribute("product", new Product());
-//        return "addProduct";
-//    }
-//
-//    @PostMapping("/addProduct")
-//    public String addProduct(@ModelAttribute Product product) {
-//        productRepository.save(product);
-//        return "redirect:/products"; // перенаправление на страницу со списком продуктов
-//    }
+    @Autowired
+    UserService userService;
 
 
 @Autowired
@@ -40,21 +32,6 @@ public ProductController(ProductService productService) {
     this.productService = productService;
 }
 
-
-
-
-
-    @GetMapping("/user")
-    public String user(){
-        return "Hey user ";
-    }
-
-//    @GetMapping("/admin")
-//    public String admin(Model model){
-//        model.addAttribute("yourAttribute", "hey admin");
-//
-//    return "admin";
-//    }
     @GetMapping("/")
     public String products() {
         return "products";
@@ -75,49 +52,54 @@ public ProductController(ProductService productService) {
         return "sex";
     }
 
+    @PostMapping("/product/basket")
+    public String basketProduct(@RequestParam("productId") Long id, RedirectAttributes redirectAttributes){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(authentication.getName());
+        List<Product> products = user.getBasket();
+        products.add(productService.getProductById(id));
+        user.setBasket(products);
+        try {
+            userService.save(user);
+        } catch (Exception e) {
+            System.out.println("");
+        }
+        redirectAttributes.addAttribute("productId",id);
+        return "redirect:/product";
+    }
+
+    @GetMapping("/basket")
+    public String basket(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(authentication.getName());
+        model.addAttribute("products",user.getBasket());
+        return "basket";
+    }
+
     @GetMapping("/product")
     public String product(@RequestParam("productId") Long id, Model model){
         model.addAttribute("product", productService.findById(id));
         return "product";
     }
-
-//    @PostMapping("/addProduct")
-//    public String addProduct(Product product) {
-//        productService.saveProduct(product);
-//        return "redirect:/man"; // Перенаправление на вашу главную страницу
-//    }
+    @PostMapping("/pay")
+    public String pay(RedirectAttributes redirectAttributes, @RequestParam("productId") Long id){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(authentication.getName());
+        List<Product> basket = user.getBasket();
+        basket.remove(productService.getProductById(id));
+        user.setBasket(basket);
+        userService.save(user);
+        redirectAttributes.addFlashAttribute("thanks","Спасибо за покупку");
+        return "redirect:/basket";
+    }
+    @GetMapping("/products")
+    public String showProductsPage() {
+        return "products"; // Вернуть имя вашего Thymeleaf шаблона для страницы с товарами
+    }
 
     @GetMapping("/clothing")
     public String showClothingCatalog() {
         return "clothing_catalog"; // Название представления (HTML-шаблона)
     }
-
-    @GetMapping("/man")
-    public String showMenCatalog() {
-        return "man"; // Название представления (HTML-шаблона)
-    }
-
-
-    @GetMapping("/product/{id}")
-    public String productInfo(@PathVariable Long id, Model model) {
-        model.addAttribute("product", productService.getProductById(id));
-        return "product-info";
-    }
-
-
-
-//    @PostMapping("/admin")
-//    public String addProduct(@ModelAttribute("product") Product product) {
-//        productService.saveProduct(product);
-//        return "redirect:/admin/home";
-//    }
-
-
-//    @PostMapping("/product/create")
-//    public String createProduct(Product product) {
-//        productService.saveProduct(product);
-//        return "redirect:/";
-//    }
-
 
 }

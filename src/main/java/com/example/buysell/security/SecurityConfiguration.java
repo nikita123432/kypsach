@@ -34,13 +34,12 @@ public class SecurityConfiguration  {
     @Bean
     public SecurityFilterChain chain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((req) -> req
-                        .requestMatchers("/about/**","/images/**","/basket/**","/product/**").permitAll()
                         .requestMatchers("/admin/**","/addProduct/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers("/regist","/css/**","/photos/**")
                         .permitAll()
                         .anyRequest()
                         .authenticated())
-                .formLogin((login) -> login.loginPage("/login").permitAll())
+                .formLogin((login) -> login.loginPage("/login").permitAll().defaultSuccessUrl("/").permitAll())
                 .logout((out) -> out.permitAll());
         return http.build();
     }

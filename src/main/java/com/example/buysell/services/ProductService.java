@@ -1,6 +1,7 @@
 package com.example.buysell.services;
 
 import com.example.buysell.models.Product;
+import com.example.buysell.models.User;
 import com.example.buysell.repositories.ProductRepository;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
@@ -73,6 +74,10 @@ public class ProductService {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        }
+        List<User> users = getProductById(id).getUsers();
+        for(User user: users){
+            user.getBasket().remove(productRepository.findById(id).get());
         }
         productRepository.deleteById(id);
     }

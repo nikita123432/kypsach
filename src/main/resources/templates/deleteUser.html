@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" type="text/css"  href="../static/css/deleteuser.css" th:href="@{/css/deleteuser.css}">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Delete users</title>
+
 </head>
 <body>
-$END$
+<header>
+    <a href="/products">Главная</a>
+    <a href="/addProduct">Add Product</a>
+</header>
+
+    <div th:each="user : ${users}">
+        <p th:text="${user.username}">Имя пользователя</p>
+        <p th:text="${user.email}">Почта</p>
+        <form th:action="@{/delete/user}" method="post" th:if="${not user.username.equals('FEDY')}">
+            <input type="hidden" name="username" th:value="${user.username}">
+            <button type="submit">Удалить</button>
+        </form>
+    </div>
 </body>
 </html>

@@ -23,6 +23,8 @@ public class Product {
     @Cascade(org.hibernate.annotations.CascadeType.REMOVE)
     private List<String> photoUrl;
     private String sex;
+    @ManyToMany(mappedBy = "basket")
+    private List<User> users;
     @Enumerated(EnumType.STRING)
     private Category category;
 }

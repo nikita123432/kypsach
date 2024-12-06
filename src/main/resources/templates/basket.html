@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" type="text/css"  href="../static/css/home.css" th:href="@{/css/basket.css}">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Basket</title>
 </head>
 <body>
-$END$
+<div th:if="${thanks}">
+    <p th:text="${thanks}"></p>
+</div>
+    <div class="container">
+        <div th:class="product-container" th:each="product : ${products}" class="product">
+            <img th:src="@{'/photos/' + ${product.photoUrl.get(0)}}" alt="Product Image">
+            <div class="product-details">
+                <a th:href="@{'/product?productId=' + ${product.id}}">
+                    <p th:text="${product.title}"></p>
+                </a>
+                <p class="price" th:text="'Цена: ' + ${product.price} + '$'"></p>
+            </div>
+            <form th:action="@{/pay}" method="post">
+                <input type="hidden" name="productId" th:value="${product.id}">
+                <button type="submit">Заказать</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

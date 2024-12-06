@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" type="text/css"  href="../static/css/home.css" th:href="@{/css/edit.css}">
 <head>
     <title>Edit Product</title>
 </head>
 <body>
 
-<h2>Add Product</h2>
+<h2>Edit Product</h2>
 <form th:action="@{/product/edit}" th:method="post" th:object="${product}" enctype="multipart/form-data">
     <input type="text" th:field="*{title}" required placeholder="Введите название">
     <textarea type="text" th:field="*{description}" required placeholder="Введите описание"></textarea>

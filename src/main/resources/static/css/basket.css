@@ -1,0 +1,36 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('https://i.pinimg.com/736x/e8/b7/6e/e8b76e5bb9a1df7181acd96bd6a1c37a.jpg'); /* Укажите путь к вашему фоновому изображению */
+    background-size: cover; /* Позволяет изображению занимать весь фон */
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #1a1919; /* Цвет текста, если он будет виден на вашем фоне */
+}
+
+
+.product-container img {
+    width: 20%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.product-container p {
+    margin: 0;
+    font-size: 18px; /* Увеличьте значение font-size для увеличения размера шрифта */
+}
+
+.product-container form {
+    margin-top: 15px;
+}
+
+.product-container button {
+    background-color: #2c3f2d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -4,144 +4,33 @@
     <title>BUYSELL</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css"  href="../static/css/home.css" th:href="@{/css/home.css}">
-    <style>
-        body {
-        /*background-image: url('gerl.jpg');*/
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-    }
-    .app-header {
-        background-color: #3a3939; /* Цвет фона шапки */
-        color: #fff; /* Цвет текста */
-        padding: 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
 
-    /* Ваш файл стилей (например, styles.css) */
-
-    /* Стиль для кнопки с классом .custom-button */
-    /*.custom-button {*/
-    /*    background-color: #4b4949; !* Здесь можно указать желаемый цвет фона *!*/
-    /*    !* Другие стили, если необходимо *!*/
-    /*}*/
-
-
-    .logo {
-        font-size: 25px;
-        font-weight: bold;
-    }
-        .logo img {
-            max-width: 50px; /* Максимальная ширина логотипа */
-        }
-
-    .main-menu ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .main-menu li {
-        display: inline;
-        margin-right: 20px;
-    }
-
-    .main-menu a {
-        text-decoration: none;
-        color: #fff;
-    }
-
-    .main-menu a:hover {
-        text-decoration: underline;
-    }
-
-    /*.fs-4 {*/
-    /*    font-size: 2rem; !* Измените размер шрифта по вашему усмотрению *!*/
-    /*    color: #0e0e0e; !* Измените цвет текста по вашему усмотрению *!*/
-    /*    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); !* Тень текста *!*/
-    /*}*/
-    nav {
-        display: flex;
-        justify-content: space-between; /* Размещаем элементы по краям контейнера */
-        align-items: flex-start; /* Выравниваем элементы по вертикали по центру */
-        font-size: 1.2rem; /* Измените размер шрифта по вашему усмотрению */
-        color: #111010; /* Измените цвет текста по вашему усмотрению */
-        text-shadow: 2px 2px 4px rgba(5, 5, 5, 0.5); /* Тень текста */
-    }
-
-    /*a {*/
-    /*    flex: 1; !* Распределяем доступное пространство равномерно между элементами *!*/
-    /*}*/
-
-    /* Применяем порядок */
-    a:first-child {
-        order: 1; /* Первый элемент (Категории) идет слева */
-
-    }
-
-    a:last-child {
-        order: 2; /* Второй элемент (Корзина) идет справа */
-    }
-    .row {
-        /*display: flex;*/
-        /*flex-direction: column; !* Размещаем элементы вертикально *!*/
-        display: flex;
-        justify-content: space-between; /* Размещаем элементы по краям контейнера */
-        align-items: center;
-        margin-left: 290px;
-        margin-right: 590px ;
-        /*align-items: center; !* Выравниваем элементы по вертикали по центру *!*/
-
-    }
-        search-box {
-            display: flex;
-            align-items: center;
-        }
-
-        .search-box input[type="text"] {
-            padding: 5px;
-            border: none;
-            border-radius: 3px;
-        }
-
-        .search-box button {
-            background-color: #007bff; /* Цвет кнопки */
-            color: #fff; /* Цвет текста на кнопке */
-            border: none;
-            border-radius: 3px;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        .search-box button:hover {
-            background-color: #0056b3; /* Цвет кнопки при наведении */
-        }
-    </style>
 </head>
 <body>
 
-<header class="app-header">
-    <div class="logo">
-        <a href="/clothing">
-            <img src="https://www.papiersdeparis.com/en/upload/burger_icon.png" width="45%">
-        </a>
-    </div>
+    <header>
+        <nav>
 
-    <nav class="main-menu">
-            <div>
+
+            <div class="main-menu">
+                <a href="/logout" style=" margin-right: 20px; font-size: 22px" >Выйти</a>
+
+                <div th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">
+                    <a href="/basket"><img th:src="@{'/photos/карзина.png'}" width="30" height="30" style=""></a>
+                </div>
+
+            </div>
+        </nav>
+
+            <div class="add">
             <!-- Добавляем условное отображение для кнопки "Добавить товар" -->
                 <a href="/addProduct" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">Add Product</a>
             </div>
+        <div class="delete">
+            <!-- Добавляем условное отображение для кнопки "Добавить товар" -->
+            <a href="/delete/user" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">Delete User</a>
+        </div>
     </nav>
-
-    <nav class="main-menu">
-        <ul>
-            <li><a href="/basket"><img src="D:\kursach\buysell\src\main\resources\static\photos\karzina.png" ></a></li>
-        </ul>
-    </nav>
-
 </header>
     <main>
 
@@ -159,15 +48,7 @@
                                     <text x="44%" y="78%" fill="#eceeef" dy=".3em">ЖЕНЩИНА</text>
                                 </svg>
                             </a>
-<!--                            <div class="card-body">-->
-<!--                                <div class="d-flex justify-content-between align-items-center">-->
-<!--                                    <div class="btn-group">-->
-<!--                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>-->
-<!--                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
-<!--                                    </div>-->
-<!--                                    <small class="text-body-secondary">9 mins</small>-->
-<!--                                </div>-->
-<!--                            </div>-->
+
                         </div>
                     </div>
                     <div class="col">
@@ -179,15 +60,7 @@
                                     <text x="44%" y="78%" fill="#eceeef" dy=".3em">МУЖЧИНА</text>
                                 </svg>
                             </a>
-    <!--                            <div class="card-body">-->
-    <!--                                <div class="d-flex justify-content-between align-items-center">-->
-    <!--                                    <div class="btn-group">-->
-    <!--                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>-->
-    <!--                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
-    <!--                                    </div>-->
-    <!--                                    <small class="text-body-secondary">9 mins</small>-->
-    <!--                                </div>-->
-    <!--                            </div>-->
+
                         </div>
                     </div>
                 </div>
@@ -196,19 +69,6 @@
 
     </main>
 
-    <!--    <footer class="text-body-secondary py-5">-->
-    <!--        <div class="container">-->
-    <!--            <p class="float-end mb-1">-->
-    <!--                <a href="#">Back to top</a>-->
-    <!--            </p>-->
-    <!--            <p class="mb-1">Album example is © Bootstrap, but please download and customize it for yourself!</p>-->
-    <!--            <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="/docs/5.3/getting-started/introduction/">getting started guide</a>.</p>-->
-    <!--        </div>-->
-    <!--    </footer>-->
-    <!--<form action="/" method="get">-->
-    <!--    Поиск по названию: <input type="text" name="title"><br>-->
-    <!--    <input type="submit" value="Поиск"/>-->
-    <!--</form>-->
 
 <hr>
 </body>

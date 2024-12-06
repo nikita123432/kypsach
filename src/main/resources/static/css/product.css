@@ -1,0 +1,85 @@
+body {
+    font-family: 'Candara', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.product-details {
+    display: flex;
+    justify-content: center;
+    align-items: center ; /* Выравнивание элементов в начало оси Y (вверх) */
+    height: 100vh;
+}
+
+.photos-container {
+    width: 50%; /* Занимает половину ширины экрана */
+    display: flex;
+    flex-direction: column;
+    /*justify-content: left; !* Выравнивание по верхнему краю *!*/
+    align-items: flex-start; /* Выравнивание по левому краю */
+    justify-content: flex-start;
+    margin-left: -440px;
+
+}
+
+.photo {
+    margin-top: 10px;
+    width: 100%; /* Занимает 100% ширины .photos-container */
+    margin-left: -250px;
+}
+.photo img {
+    width: 100%; /* Занимает 100% ширины родительского блока */
+    height: auto; /* Сохраняет соотношение сторон */
+}
+
+.details {
+    /*max-width: 1000px ;*/
+    /*box-sizing: border-box; !* Учитываем padding и border в общей ширине *!*/
+    text-align: left;
+    padding: 24px; /* Пример добавления отступа для красивого вида */
+    font-size: 200%;
+    display: flex; /* Размещаем цену и название в строку */
+    justify-content: space-between; /* Распределяем пространство между элементами */
+    flex-direction: column;
+    position: fixed;
+    margin-left: 1000px;
+}
+
+.name-and-price {
+    /*display: flex;*/
+    justify-content: space-between;
+
+}
+
+.name {
+    margin-right: 40px; /* Расстояние между названием и ценой */
+    max-width: 402px; /* Установите желаемую максимальную ширину для описания */
+    word-wrap: break-word; /* Автоматический перенос слов на новую строку */
+}
+
+.price{
+    margin-top: 20px;
+    text-align: left;
+}
+
+.description {
+    max-width: 402px; /* Установите желаемую максимальную ширину для описания */
+    word-wrap: break-word; /* Автоматический перенос слов на новую строку */
+}
+
+button {
+    padding: 20px;
+    background-color: #0a0a0a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 400px;
+}
+
+button:hover {
+    background-color: #090909;
+}
+
